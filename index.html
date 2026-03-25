@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Men's Salon - Premium Grooming Experience</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Royal Men's Salon | Premium Grooming in Jaipur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,27 +13,36 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --black: #1a1a1a;
+            --gold: #D4AF37;
+            --dark-gold: #B8962E;
+            --gray: #333;
+            --light-gray: #666;
+            --white: #fff;
+            --bg-dark: #0f0f0f;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: #fff;
-            background: #000;
+            color: var(--white);
             overflow-x: hidden;
         }
 
-        /* Navigation */
-        nav {
+        /* Navbar */
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(26, 26, 26, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
         }
 
-        nav .container {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
@@ -42,126 +52,142 @@
         }
 
         .logo {
+            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            font-weight: bold;
-            color: #D4AF37;
+            font-weight: 700;
+            color: var(--gold);
             text-decoration: none;
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
 
-        .nav-links a {
-            color: #fff;
+        .nav-menu a {
+            color: var(--white);
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: #D4AF37;
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold);
         }
 
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
+            gap: 4px;
         }
 
         .hamburger span {
             width: 25px;
             height: 3px;
-            background: #D4AF37;
-            margin: 3px 0;
+            background: var(--white);
             transition: 0.3s;
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23000000" width="1200" height="800"/><path fill="%23D4AF37" opacity="0.1" d="M0 400Q300 200 600 400T1200 400V800H0z"/></svg>');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1578632357504-9c1292a6d3e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 0 2rem;
+            position: relative;
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #D4AF37, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
         }
 
-        .hero p {
-            font-size: 1.3rem;
+        .hero-content p {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             margin-bottom: 2rem;
-            max-width: 600px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
         }
 
         .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            margin: 0.5rem;
+            padding: 1rem 2.5rem;
             border: none;
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 600;
             text-decoration: none;
-            cursor: pointer;
+            display: inline-block;
             transition: all 0.3s ease;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
-        .btn-gold {
-            background: linear-gradient(45deg, #D4AF37, #F1C40F);
-            color: #000;
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--gold);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
 
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #D4AF37;
-            border: 2px solid #D4AF37;
-        }
-
-        .btn-outline:hover {
-            background: #D4AF37;
-            color: #000;
-            transform: translateY(-3px);
-        }
-
-        /* Container */
-        .container {
+        /* Sections */
+        .section {
+            padding: 100px 0;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
 
-        /* Sections */
-        section {
-            padding: 100px 0;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
             text-align: center;
             margin-bottom: 3rem;
-            background: linear-gradient(45deg, #D4AF37, #fff);
+            background: linear-gradient(45deg, var(--gold), #f0c14b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -179,36 +205,37 @@
         /* Services */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            margin-top: 3rem;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            padding: 2.5rem 2rem;
             border-radius: 20px;
             text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.2);
             transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
-            border-color: #D4AF37;
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .service-icon {
             font-size: 3rem;
-            color: #D4AF37;
+            color: var(--gold);
             margin-bottom: 1rem;
         }
 
-        .price {
+        .service-price {
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #D4AF37;
+            font-weight: 700;
+            color: var(--gold);
             margin-top: 1rem;
         }
 
@@ -216,67 +243,77 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .gallery-item {
-            height: 250px;
-            background: linear-gradient(45deg, #D4AF37, #F1C40F);
-            border-radius: 15px;
-            position: relative;
+            height: 300px;
+            border-radius: 20px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .gallery-item:hover {
             transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .gallery-item img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover::before {
-            left: 100%;
+        .gallery-item:hover img {
+            transform: scale(1.1);
         }
 
         /* Contact */
         .contact-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            text-align: center;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .contact-item {
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(212, 175, 55, 0.1);
         }
 
         .contact-item i {
-            font-size: 3rem;
-            color: #D4AF37;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--gold);
+            width: 40px;
         }
 
         #map {
             height: 400px;
             border-radius: 20px;
-            margin-top: 2rem;
-            width: 100%;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
-        /* WhatsApp Floating Button */
+        /* Floating WhatsApp */
         .whatsapp-float {
             position: fixed;
             width: 60px;
@@ -290,62 +327,112 @@
             font-size: 30px;
             box-shadow: 2px 2px 3px #999;
             z-index: 100;
-            animation: whatsapp-bounce 2s infinite;
+            animation: bounce 2s infinite;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        @keyframes whatsapp-bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+        .whatsapp-float:hover {
+            background: #128C7E;
+            transform: scale(1.1);
         }
 
-        /* Responsive */
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
             }
 
-            .nav-links {
+            .nav-menu {
                 position: fixed;
                 left: -100%;
                 top: 70px;
                 flex-direction: column;
-                background-color: #000;
+                background-color: var(--black);
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
                 padding: 2rem 0;
+                gap: 1.5rem;
             }
 
-            .nav-links.active {
+            .nav-menu.active {
                 left: 0;
             }
 
-            .hero {
-                padding: 0 1rem;
+            .nav-menu a {
+                font-size: 1.3rem;
             }
 
-            section {
-                padding: 60px 0;
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 80px 1rem;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
             }
         }
 
-        /* Smooth Scroll */
+        /* Dark theme sections */
+        .about-section, .services-section, .gallery-section, .contact-section {
+            background: var(--bg-dark);
+        }
+
+        /* Scroll behavior */
         html {
             scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
             <a href="#" class="logo">Royal Men's Salon</a>
-            <ul class="nav-links" id="navLinks">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
@@ -362,158 +449,97 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <h1>Style That Defines You</h1>
-        <p>Experience premium grooming with our expert barbers. Precision cuts, luxury treatments, and unmatched style.</p>
-        <div>
-            <a href="https://wa.me/917425093901?text=Hello%20Royal%20Salon,%20I%20want%20to%20book%20a%20service.%0A%0AName:%20%0ADate:%20%0ATime:%20%0AService:%20" 
-
-                class="btn btn-primary">
-
-        
-        Book Now
-            </a>
-            
-        
-            </a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Royal Men's Salon</h2>
-            <div class="about-content">
-                <p>At Royal Men's Salon, we redefine men's grooming with precision craftsmanship and luxury service. Our master barbers bring years of expertise to every cut, shave, and treatment. We use only premium products and modern techniques to ensure you leave looking sharp and feeling confident.</p>
-                <p>Step into luxury. Walk out redefined.</p>
+        <div class="hero-content">
+            <h1>Style That Defines You</h1>
+            <p>Premium Grooming Experience in Jaipur</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">View Services</a>
+                <a href="https://wa.me/917425093901?text=Hello%20I%20want%20to%20book%20a%20service" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Book Now
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <h2 class="section-title">About Royal Men's Salon</h2>
+        <div class="about-content">
+            <p>Experience luxury grooming at its finest. Royal Men's Salon brings world-class grooming services to Jaipur with a commitment to excellence. Our master stylists use premium products and cutting-edge techniques to deliver personalized grooming experiences that enhance your natural style and confidence.</p>
+            <p>Established with a vision to redefine men's grooming, we combine tradition with modern expertise to create looks that make a statement.</p>
+        </div>
+    </section>
+
     <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <h3>Haircut</h3>
-                    <p>Precision cuts tailored to your style and face shape.</p>
-                    <div class="price">₹500</div>
+    <section id="services" class="section services-section">
+        <h2 class="section-title">Our Premium Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-cut"></i>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hand-holding-medical"></i>
-                    </div>
-                    <h3>Beard Trim</h3>
-                    <p>Expert beard shaping and grooming for the perfect look.</p>
-                    <div class="price">₹300</div>
+                <h3>Premium Haircut</h3>
+                <p>Expert precision cuts tailored to your face shape and style preference.</p>
+                <div class="service-price">₹350</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hand-holding-medical"></i>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-spa"></i>
-                    </div>
-                    <h3>Facial</h3>
-                    <p>Deep cleansing luxury facial for refreshed skin.</p>
-                    <div class="price">₹800</div>
+                <h3>Beard Trim & Shape</h3>
+                <p>Professional beard styling for the perfect sculpted look.</p>
+                <div class="service-price">₹250</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-spa"></i>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hand-sparkles"></i>
-                    </div>
-                    <h3>Hair Spa</h3>
-                    <p>Premium treatment for stronger, healthier hair.</p>
-                    <div class="price">₹1200</div>
+                <h3>Luxury Facial</h3>
+                <p>Deep cleansing and rejuvenation for radiant, healthy skin.</p>
+                <div class="service-price">₹500</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hand-sparkles"></i>
                 </div>
+                <h3>Hair Spa Treatment</h3>
+                <p>Deep nourishment and revitalization for stronger, shinier hair.</p>
+                <div class="service-price">₹800</div>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2>Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);"></div>
-                <div class="gallery-item" style="background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);"></div>
-                <div class="gallery-item" style="background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);"></div>
-                <div class="gallery-item" style="background: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%);"></div>
-                <div class="gallery-item" style="background: linear-gradient(45deg, #fa709a 0%, #fee140 100%);"></div>
-                <div class="gallery-item" style="background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);"></div>
+    <section id="gallery" class="section gallery-section">
+        <h2 class="section-title">Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1578632357504-9c1292a6d3e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Haircut">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Beard Trim">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1524954100955-d9a83f44cd62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Facial">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1612810803955-e99ea3c88449?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hair Spa">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Salon Interior">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Grooming">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1516979187457-637a1ec45b07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Styling">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Premium Service">
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact-content">
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <h3>Call Us</h3>
-                    <p><a href="tel:+917425093901" style="color: #fff; text-decoration: none; font-size: 1.2rem;">+917425093901</a></p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Location</h3>
-                    <p>Royal Men's Salon<br>Main Market, Sector 15<br>Gurgaon, Haryana 122001</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <h3>WhatsApp</h3>
-                    <p><a href="https://wa.me/917425093901?text=Hello%20Royal%20Men's%20Salon%20I%20want%20to%20book%20a%20service" target="_blank" style="color: #fff; text-decoration: none; font-size: 1.2rem;">Chat Now</a></p>
-                </div>
-            </div>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.123456789!2d77.01952531525879!3d28.45949698236612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b5a12345678%3A0x987654321!2sSector%2015%2C%20Gurgaon!5e0!3m2!1sen!2sin!4v1699999999999" 
-                width="100%" 
-                height="400" 
-                style="border:0; border-radius: 20px; margin-top: 2rem;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-    </section>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/917425093901?text=Hello%20Royal%20Men's%20Salon%20I%20want%20to%20book%20a%20service" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <script>
-const menuIcon = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menuIcon.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-    </script>
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(0, 0, 0, 0.98)';
-            } else {
-                nav.style.background 
-<script>
-const menuIcon = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menuIcon.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-})
+    <section id="contact" class="section contact-section">
+        <h2 class

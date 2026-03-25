@@ -506,3 +506,39 @@
                 nav.style.background = 'rgba(0, 0, 0, 0.98)';
             } else {
                 nav.style.background 
+<script>
+const menuIcon = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuIcon.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+</script>
+<div class="menu-toggle">☰</div>
+
+<ul class="nav-links">
+  <li><a href="#home">Home</a></li>
+  <li><a href="#services">Services</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
+.nav-links {
+  display: none;
+
+ }
+
+.nav-links.active {
+  display: block;
+} 
+    .gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438">
